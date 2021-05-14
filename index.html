@@ -8,19 +8,103 @@
     <style>
         body{
             background-color:burlywood;
+            font-size:1.7rem;
         }
         main{
-            color:cadetblue;
+            color:rgb(120, 100, 44);
             text-align: center;
+        }
+        #wylosowany{
+            padding:2%;
+            margin-top:2%;
+            margin-left:35%;
+            margin-right:35%;
+            border-radius: 10px;
+            text-align:center;
+            background-color:rgb(224, 195, 112);
+            color:white;
+        }
+        #wylosowany img{
+            padding:2%;
+            width:250px;
+            height:250px;
+            border-radius: 10px;
+        }
+        #guzik{
+            background-color:rgba(0,0,0,0.6);
+            margin-left: 43%;
+            margin-right:42%;
+            font-size:25px;
+            padding: 5px;
+            width:15%;
+            text-align: center;
+            border-radius: 3vw;
+            color:rgb(233, 237, 245);
         }
 
     </style>
 </head>
 <body>
-    <main><h1>Wylosuj sobie zwierzaka!</h1></main>
+    <main><h1>Wylosuj sobie królika!</h1></main>
     <form><button id="guzik">Losuj</button></form>
+    <div id="container"></div>
 <script>
+    let guzik=document.getElementById("guzik");
+    
 
+    const krolik1={
+        imie: "Łatek",
+        kolor: "białego w czarne łaty",
+        wiek: "3 lata",
+        img: '<img src="krolik1.jpg">',
+        powitanie:"Zabierz mnie ze sobą!"
+    }
+    const krolik2={
+        imie: "Szaruś",
+        kolor: "szarego z białym brzuszkiem",
+        wiek: "6 miesięcy",
+        img: '<img src="krolik2.jpg">',
+        powitanie:"Jestem głodny!"
+    }
+    const krolik3={
+        imie: "Śnieżek",
+        kolor: "białego",
+        wiek: "6 lat",
+        img: '<img src="krolik3.jpg">',
+        powitanie:"Pobawmy się!"
+    }
+    const krolik4={
+        imie: "Księżniczka",
+        kolor: "beżowego",
+        wiek: "rok",
+        img: '<img src="krolik4.jpg">',
+        powitanie:"Pokochaj mnie!"
+    }
+    const krolik5={
+        imie: "Tuptuś",
+        kolor: "ciemno szarego",
+        wiek: "4 lata",
+        img: '<img src="krolik5.png">',
+        powitanie: "Pogłaszczesz mnie?"
+    }
+    const tablica = [krolik1,krolik2,krolik3,krolik4,krolik5];
+
+    guzik.addEventListener('click',losowanie(tablica));
+
+    function losowanie(tablica){
+    let container=document.getElementById("container");
+    let index = Math.floor(Math.random() * (5 - 0) + 0);
+    let losowanie=tablica[index];
+    const wylosowany = document.createElement("div");
+    wylosowany.id="wylosowany";
+    wylosowany.innerHTML+=losowanie.img+"<br>";
+    wylosowany.innerHTML+="Wylosowany królik nazywa się "+losowanie.imie+".<br>";
+    wylosowany.innerHTML+="Jest koloru "+losowanie.kolor+".<br>";
+    wylosowany.innerHTML+="Ma "+losowanie.wiek+".<br>";
+    wylosowany.innerHTML+=losowanie.powitanie;
+
+    container.appendChild(wylosowany);
+}
 </script>
 </body>
 </html>
