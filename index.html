@@ -14,11 +14,12 @@
             color:rgb(120, 100, 44);
             text-align: center;
         }
-        #wylosowany{
+        #losowanie{
             padding:2%;
+            float: left;
+            margin-left:7%;
+            margin-right:5%;
             margin-top:2%;
-            margin-left:35%;
-            margin-right:35%;
             border-radius: 10px;
             text-align:center;
             background-color:rgb(224, 195, 112);
@@ -33,6 +34,7 @@
         #guzik{
             background-color:rgba(0,0,0,0.6);
             margin-left: 43%;
+            width:400px;
             margin-right:42%;
             font-size:25px;
             padding: 5px;
@@ -41,16 +43,53 @@
             border-radius: 3vw;
             color:rgb(233, 237, 245);
         }
+        #dodawanie{
+            float:left;
+            margin-left:5%;
+            margin-right:5%;
+            margin-top:-3%;
+            padding:2%;
+            border-radius: 10px;
+            text-align:center;
+            background-color:rgb(224, 195, 112);
+            color:white;
+        }
+        #dodaj{
+            background-color:rgba(0,0,0,0.6);
+            margin-left: 43%;
+            margin-right:42%;
+            font-size:25px;
+            padding: 2%;
+            width:15%;
+            text-align: center;
+            border-radius: 3vw;
+            color:rgb(233, 237, 245);
+        }
 
     </style>
 </head>
-<body>
+<div>
     <main><h1>Wylosuj sobie królika!</h1></main>
-    <form><button id="guzik">Losuj</button></form>
-    <div id="container"></div>
+    <div id="losowanie"><div id="container">
+        
+    </div>
+    <form><button id="guzik">Losuj</button></form></div>
+    <div id="dodawanie">
+        <p><b>Chcesz dodać swojego królika?<br>Wypełnij formularz!</b></p>
+        <form>
+        <p>Jak się wabi?</p>
+        <input type="text" id="imie">
+        <p>Ile ma lat?</p>
+        <input type="number" id="wiek">
+        <p>Jak wygląda?</p>
+        <input type="text" id="wyglad">
+        <p>Wrzuć zdjęcie swojej pociechy</p>
+        <input type="file" id="zdjecie">
+        <input type="button" id="dodaj" value="Dodaj">
+        </form></div>
 <script>
     let guzik=document.getElementById("guzik");
-    
+    let dodaj=document.getElementById("dodaj");
 
     const krolik1={
         imie: "Łatek",
@@ -87,7 +126,27 @@
         img: '<img src="krolik5.png">',
         powitanie: "Pogłaszczesz mnie?"
     }
+    
     const tablica = [krolik1,krolik2,krolik3,krolik4,krolik5];
+    const tablica1=[];
+    let dodatkowa=1;
+
+    dodaj.addEventListener('click',dodawanie(tablica));
+    function dodawanie(tablica){
+        let imie=document.getElementById("imie").value;
+        let wiek=document.getElementById("wiek").value;
+        let wyglad=document.getElementById("wyglad").value;
+        let zdjecie=document.getElementById("zdjecie");
+
+    tablica1[dodatkowa]={
+        imie: imie,
+        kolor: wyglad,
+        wiek: wiek,
+        img: zdjecie
+    }
+
+    dodatkowa++;
+    }
 
     guzik.addEventListener('click',losowanie(tablica));
 
@@ -104,6 +163,7 @@
     wylosowany.innerHTML+=losowanie.powitanie;
 
     container.appendChild(wylosowany);
+    
 }
 </script>
 </body>
